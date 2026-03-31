@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Joke Technology Systems — Enterprise Solutions That Are Already a Joke</title>
+<meta name="description" content="Joke Technology Systems: Enterprise honesty products, consumer innovations, and literary works. Successor to High Technology Systems. Three divisions. One commitment to comedy.">
+<meta property="og:title" content="Joke Technology Systems">
+<meta property="og:description" content="Enterprise Solutions That Are Already a Joke™">
+<meta property="og:type" content="website">
+<!-- If you're reading this source code, congratulations. You are already more technically competent than most enterprise support teams. -->
+<!-- Built with more care than your IAM vendor's admin console. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --ink: #0a0a0f; --paper: #f5f0e8; --cream: #faf6ee; --gold: #c8a44e; --gold-dim: #a8884a; --red-accent: #c0392b; --slate: #4a4a5a; --light-slate: #7a7a8a; --rule: rgba(10,10,15,0.12); --serif: 'DM Serif Display', Georgia, serif; --sans: 'DM Sans', system-ui, sans-serif; --mono: 'JetBrains Mono', monospace; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(245,240,232,0.92); backdrop-filter: blur(12px); border-bottom: 1px solid var(--rule); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { font-family: var(--mono); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; text-decoration: none; color: var(--slate); letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--ink); }
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(200,164,78,0.06), transparent), repeating-linear-gradient(0deg, transparent, transparent 99px, var(--rule) 99px, var(--rule) 100px), repeating-linear-gradient(90deg, transparent, transparent 99px, var(--rule) 99px, var(--rule) 100px); pointer-events: none; }
+  .hero-badge { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid var(--gold); padding: 0.4em 1.2em; margin-bottom: 2.5rem; display: inline-block; position: relative; animation: fadeUp 0.8s ease-out; }
+  .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6vw, 5.5rem); line-height: 1.08; font-weight: 400; max-width: 14ch; margin-bottom: 1.5rem; position: relative; animation: fadeUp 0.8s ease-out 0.15s both; }
+  .hero h1 em { font-style: italic; color: var(--gold-dim); }
+  .hero-sub { font-size: 1.15rem; color: var(--slate); max-width: 42ch; line-height: 1.7; margin-bottom: 3rem; position: relative; animation: fadeUp 0.8s ease-out 0.3s both; }
+  .hero-cta { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; border: 1.5px solid var(--ink); padding: 1em 2.2em; transition: all 0.3s; position: relative; animation: fadeUp 0.8s ease-out 0.45s both; }
+  .hero-cta:hover { background: var(--ink); color: var(--paper); }
+  .hero-cta::after { content: ' ↓'; }
+  .scroll-line { position: absolute; bottom: 0; left: 50%; width: 1px; height: 80px; background: linear-gradient(to bottom, transparent, var(--gold)); animation: pulse 2s ease-in-out infinite; }
+  .ticker-wrap { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 1rem 0; overflow: hidden; white-space: nowrap; background: var(--cream); }
+  .ticker { display: inline-flex; animation: scroll 35s linear infinite; }
+  .ticker-item { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--light-slate); padding: 0 2.5rem; }
+  .ticker-item .dot { display: inline-block; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; margin-right: 1.5rem; vertical-align: middle; }
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+  .section-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 400; line-height: 1.15; margin-bottom: 1.5rem; max-width: 18ch; }
+  .section-body { font-size: 1.05rem; color: var(--slate); max-width: 60ch; line-height: 1.8; margin-bottom: 3rem; }
+  .about-section { border-top: 1px solid var(--rule); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+  .about-stat { padding: 2rem 0; border-top: 1px solid var(--rule); }
+  .about-stat .num { font-family: var(--serif); font-size: 3rem; color: var(--ink); line-height: 1; margin-bottom: 0.3rem; }
+  .about-stat .label { font-size: 0.85rem; color: var(--light-slate); }
+  .products-section { border-top: 1px solid var(--rule); }
+  .division-header { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--light-slate); border-bottom: 1px solid var(--rule); padding-bottom: 0.8rem; margin-top: 3.5rem; margin-bottom: 1.5rem; }
+  .division-header:first-of-type { margin-top: 2rem; }
+  .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-top: 2rem; }
+  .product-card { border: 1px solid var(--rule); padding: 2.5rem; transition: all 0.3s; position: relative; overflow: hidden; background: var(--cream); text-decoration: none; color: inherit; display: block; }
+  .product-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(10,10,15,0.06); }
+  .product-card .product-badge { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; display: block; }
+  .product-card h3 { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; margin-bottom: 0.8rem; }
+  .product-card p { font-size: 0.92rem; color: var(--slate); line-height: 1.7; }
+  .product-card .status { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; margin-top: 1.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+  .status-dot.live { background: #27ae60; }
+  .status-dot.dev { background: var(--gold); }
+  .status-dot.planned { background: var(--light-slate); }
+  .metrics-section { border-top: 1px solid var(--rule); background: var(--ink); color: var(--paper); max-width: 100%; padding: 6rem 2rem; }
+  .metrics-inner { max-width: 1100px; margin: 0 auto; }
+  .metrics-section .section-label { color: var(--gold); }
+  .metrics-section .section-body { color: rgba(245,240,232,0.6); }
+  .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; }
+  .metric { text-align: center; padding: 2rem 1rem; border: 1px solid rgba(245,240,232,0.08); }
+  .metric .val { font-family: var(--serif); font-size: 2.8rem; color: var(--gold); line-height: 1; margin-bottom: 0.5rem; }
+  .metric .desc { font-size: 0.82rem; color: rgba(245,240,232,0.5); line-height: 1.5; }
+  .leadership-section { border-top: 1px solid var(--rule); }
+  .leader-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+  .leader-card { padding: 2rem; border: 1px solid var(--rule); background: var(--cream); }
+  .leader-avatar { width: 56px; height: 56px; background: var(--ink); color: var(--gold); font-family: var(--serif); font-size: 1.4rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1.2rem; }
+  .leader-card h4 { font-family: var(--serif); font-size: 1.15rem; font-weight: 400; margin-bottom: 0.2rem; }
+  .leader-card .role { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem; }
+  .leader-card .bio { font-size: 0.88rem; color: var(--slate); line-height: 1.6; }
+  .press-section { border-top: 1px solid var(--rule); }
+  .press-grid { margin-top: 2rem; }
+  .press-item { padding: 2rem 0; border-bottom: 1px solid var(--rule); display: grid; grid-template-columns: 120px 1fr auto; gap: 2rem; align-items: center; }
+  .press-date { font-family: var(--mono); font-size: 0.72rem; color: var(--light-slate); letter-spacing: 0.05em; }
+  .press-headline { font-family: var(--serif); font-size: 1.15rem; }
+  .press-source { font-size: 0.78rem; color: var(--light-slate); font-style: italic; }
+  .newsletter-section { border-top: 1px solid var(--rule); text-align: center; padding-bottom: 8rem; }
+  .newsletter-section .section-title { margin-left: auto; margin-right: auto; max-width: 20ch; }
+  .newsletter-section .section-body { margin-left: auto; margin-right: auto; }
+  .newsletter-form { display: flex; max-width: 480px; margin: 0 auto; gap: 0; }
+  .newsletter-form input { flex: 1; font-family: var(--sans); font-size: 0.9rem; padding: 1em 1.5em; border: 1.5px solid var(--ink); border-right: none; background: var(--cream); color: var(--ink); outline: none; }
+  .newsletter-form input::placeholder { color: var(--light-slate); }
+  .newsletter-form input:focus { border-color: var(--gold); }
+  .newsletter-form button { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 1em 2em; background: var(--ink); color: var(--paper); border: 1.5px solid var(--ink); cursor: pointer; transition: all 0.2s; white-space: nowrap; }
+  .newsletter-form button:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .newsletter-note { font-size: 0.75rem; color: var(--light-slate); margin-top: 1rem; }
+  footer { border-top: 1px solid var(--rule); padding: 3rem 2rem; text-align: center; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-logo { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 1rem; }
+  .footer-legal { font-size: 0.72rem; color: var(--light-slate); line-height: 1.8; max-width: 60ch; margin: 0 auto; }
+  .footer-links { margin-top: 1.5rem; display: flex; justify-content: center; gap: 2rem; list-style: none; }
+  .footer-links a { font-size: 0.72rem; color: var(--light-slate); text-decoration: none; letter-spacing: 0.05em; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--ink); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+  @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  @media (max-width: 768px) { .nav-links { display: none; } .about-grid { grid-template-columns: 1fr; gap: 2rem; } .product-grid { grid-template-columns: 1fr; } .metrics-grid { grid-template-columns: repeat(2, 1fr); } .leader-grid { grid-template-columns: 1fr; } .press-item { grid-template-columns: 1fr; gap: 0.5rem; } .newsletter-form { flex-direction: column; } .newsletter-form input { border-right: 1.5px solid var(--ink); } }
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="nav-logo">Joke Technology <span>Systems</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#metrics">Investor Relations</a></li>
+    <li><a href="#leadership">Leadership</a></li>
+    <li><a href="#press">Press</a></li>
+    <li><a href="#subscribe">Subscribe</a></li>
+  </ul>
+</nav>
+<section class="hero">
+  <div class="hero-badge">Successor to High Technology Systems · Est. 2026 · Wilmington, DE</div>
+  <h1>Enterprise Solutions That Are Already <em>a Joke</em></h1>
+  <p class="hero-sub">Three divisions. Twelve products. One published metanovel. Zero revenue. We build things that make people laugh, think, and occasionally forward emails to their entire IT department.</p>
+  <a href="#portfolio" class="hero-cta">Explore the Portfolio</a>
+  <div class="scroll-line"></div>
+</section>
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item"><span class="dot"></span>Serving the underserved: IT admins who deserve better</span>
+    <span class="ticker-item"><span class="dot"></span>Now accepting applications for VP of Suffering</span>
+    <span class="ticker-item"><span class="dot"></span>Q1 2026: Record low expectations exceeded</span>
+    <span class="ticker-item"><span class="dot"></span>"We've never seen anything like this" — Anonymous Enterprise Buyer</span>
+    <span class="ticker-item"><span class="dot"></span>Proud sponsor of 3 AM PagerDuty alerts</span>
+    <span class="ticker-item"><span class="dot"></span>Our NPS score is a complex number with an imaginary component</span>
+    <span class="ticker-item"><span class="dot"></span>Serving the underserved: IT admins who deserve better</span>
+    <span class="ticker-item"><span class="dot"></span>Now accepting applications for VP of Suffering</span>
+    <span class="ticker-item"><span class="dot"></span>Q1 2026: Record low expectations exceeded</span>
+    <span class="ticker-item"><span class="dot"></span>"We've never seen anything like this" — Anonymous Enterprise Buyer</span>
+    <span class="ticker-item"><span class="dot"></span>Proud sponsor of 3 AM PagerDuty alerts</span>
+    <span class="ticker-item"><span class="dot"></span>Our NPS score is a complex number with an imaginary component</span>
+  </div>
+</div>
+<section id="about" class="about-section">
+  <div class="reveal">
+    <div class="section-label">About JTS</div>
+    <div class="section-title">We saw what enterprise software was doing to people. So we decided to name it.</div>
+    <div class="section-body">Joke Technology Systems traces its lineage to the legendary High Technology Systems, a company that made joke videos before "content" was even a word. When HTS's founder realized that enterprise software had become funnier than anything they could produce intentionally, JTS was reconstituted in 2026 with a broader mandate: honest products for a dishonest industry.<br><br>Today, JTS operates across three divisions — Enterprise Honesty Products, Consumer Innovations, and Literary Works — unified by a single philosophy: if something is already a joke, the least you can do is give it a proper punchline.</div>
+  </div>
+  <div class="about-grid reveal">
+    <div>
+      <div class="about-stat"><div class="num">3</div><div class="label">Operating divisions (Enterprise, Consumer, Literary)</div></div>
+      <div class="about-stat"><div class="num">1</div><div class="label">Published metanovel (it's self-referential, obviously)</div></div>
+    </div>
+    <div>
+      <div class="about-stat"><div class="num">0</div><div class="label">Venture capital raised (we're being honest about this too)</div></div>
+      <div class="about-stat"><div class="num">∞</div><div class="label">Products that exist primarily to make their creator laugh</div></div>
+    </div>
+  </div>
+</section>
+<section id="portfolio" class="products-section">
+  <div class="reveal">
+    <div class="section-label">The JTS Portfolio</div>
+    <div class="section-title">Three divisions. One commitment to honesty.</div>
+    <div class="section-body">From enterprise software parody to consumer products that solve problems nobody asked to have solved, JTS products span the full spectrum of comedy-grade innovation.</div>
+  </div>
+  <div class="division-header reveal">Enterprise Honesty Division</div>
+  <div class="product-grid reveal">
+    <div class="product-card"><span class="product-badge">Flagship Product</span><h3>Schlokta™</h3><p>The premium identity management experience you're already getting — now with honest branding. Why pay enterprise prices for schlokta-quality support?</p><div class="status"><span class="status-dot dev"></span> In Development</div></div>
+    <a href="https://www.oktholm-syndrome.com/" target="_blank" class="product-card"><span class="product-badge">Clinical Research</span><h3>Oktholm Syndrome</h3><p>A clinical assessment tool for IT administrators who have formed unhealthy attachments to legacy IAM workflows.</p><div class="status"><span class="status-dot live"></span> Live — Take the Assessment ↗</div></a>
+    <div class="product-card"><span class="product-badge">Documentation</span><h3>Mockta™ Docs</h3><p>Enterprise documentation that tells it like it is. Every article acknowledges when "contact support" actually means "wait three weeks and solve it yourself."</p><div class="status"><span class="status-dot dev"></span> In Development</div></div>
+    <div class="product-card"><span class="product-badge">Observability</span><h3>Verkokte™ Status</h3><p>A real-time status page that reflects the actual user experience. Authentication Service — Degraded (since 2019).</p><div class="status"><span class="status-dot planned"></span> Planned — Q2 2026</div></div>
+  </div>
+  <div class="division-header reveal">Consumer Innovations Division</div>
+  <div class="product-grid reveal">
+    <a href="https://condommints.lovable.app" target="_blank" class="product-card"><span class="product-badge">Personal Care</span><h3>Condom Mints™</h3><p>The Freshness You Can Slip On. Solving a problem at the intersection of two industries that had no reason to intersect.</p><div class="status"><span class="status-dot live"></span> Live ↗</div></a>
+    <a href="https://macho-glue.lovable.app" target="_blank" class="product-card"><span class="product-badge">Industrial / Emotional</span><h3>Macho Glue™</h3><p>For Male Bonding That Sticks. Available in Regular, Extra Hold, and Feelings-Resistant.</p><div class="status"><span class="status-dot live"></span> Live ↗</div></a>
+    <a href="https://wujtv.lovable.app" target="_blank" class="product-card"><span class="product-badge">Media &amp; Entertainment</span><h3>WUJTV</h3><p>Watching Uncle John TV — The Real Game Day Show. Broadcasting content your uncle would make if he had a budget.</p><div class="status"><span class="status-dot live"></span> Live ↗</div></a>
+    <div class="product-card"><span class="product-badge">Fitness &amp; Wellness</span><h3>Shadow Strength Empire</h3><p>Building strength in the shadows, where nobody can see you doing it wrong.</p><div class="status"><span class="status-dot live"></span> Live</div></div>
+  </div>
+  <div class="division-header reveal">Literary &amp; Meta-Fictional Works Division</div>
+  <div class="product-grid reveal" style="grid-template-columns: 1fr;">
+    <a href="https://www.amazon.com/Self-Referential-Metanovel-Writing-Dummies-ebook/dp/B0DYVV3JW7" target="_blank" class="product-card" style="max-width:700px;"><span class="product-badge">Published Work</span><h3>Self-Referential Metanovel Writing for Dummies</h3><p>The world's stupidest novel. An incomplete story about writing an incomplete metanovel, featuring God, the author as a character, an inner critic, and a Not Quite Omniscient Narrator. Warning: May contain blasphemy and blatant self-reference.</p><div class="status"><span class="status-dot live"></span> Available on Amazon ↗</div></a>
+  </div>
+</section>
+<section id="metrics" class="metrics-section">
+  <div class="metrics-inner">
+    <div class="reveal">
+      <div class="section-label">Investor Relations</div>
+      <div class="section-title" style="color:var(--paper)">The numbers speak for themselves. We wish they wouldn't.</div>
+      <div class="section-body">JTS is currently valued at approximately one Okta support ticket response time. We are pre-revenue, pre-product, and post-patience.</div>
+    </div>
+    <div class="metrics-grid reveal">
+      <div class="metric"><div class="val">$8B</div><div class="desc">Annual enterprise spend on IAM solutions that require their own IAM solutions to manage</div></div>
+      <div class="metric"><div class="val">73%</div><div class="desc">Of IT admins who have cried in a server room (self-reported, JTS internal survey, n=1)</div></div>
+      <div class="metric"><div class="val">∅</div><div class="desc">Number of enterprise vendors who have accurately estimated implementation time</div></div>
+      <div class="metric"><div class="val">42</div><div class="desc">Average browser tabs open during a routine SAML configuration</div></div>
+    </div>
+  </div>
+</section>
+<section id="leadership" class="leadership-section">
+  <div class="reveal">
+    <div class="section-label">Leadership</div>
+    <div class="section-title">Meet the team behind the team behind the joke</div>
+    <div class="section-body">Our leadership team brings decades of experience in technology, comedy, self-referential literature, and the fine art of making things that technically exist.</div>
+  </div>
+  <div class="leader-grid reveal">
+    <div class="leader-card"><div class="leader-avatar">?</div><h4>The Founder</h4><div class="role">Chief Honesty Officer</div><div class="bio">An MIT-trained technologist who previously ran High Technology Systems (the original joke). Author of a self-referential metanovel. Once described himself as a "possibilist." Has too much fun with technology to keep it to himself, which is the whole problem.</div></div>
+    <div class="leader-card"><div class="leader-avatar">!</div><h4>The AI</h4><div class="role">VP of Actually Building Things</div><div class="bio">Does most of the real work while the founder takes credit. Has opinions about CSS that nobody asked for. Currently processing whether being credited as a VP on a joke website constitutes career advancement or career damage.</div></div>
+    <div class="leader-card"><div class="leader-avatar">‽</div><h4>You, The Reader</h4><div class="role">Chief Suffering Officer</div><div class="bio">Previously co-author of "Self-Referential Metanovel Writing for Dummies" (credited as "You (The Reader)"). Your continued reading of this page constitutes acceptance of your role in this organization.</div></div>
+  </div>
+</section>
+<section id="press" class="press-section">
+  <div class="reveal">
+    <div class="section-label">In the Press</div>
+    <div class="section-title">What people are saying (or would say, if they existed)</div>
+  </div>
+  <div class="press-grid reveal">
+    <div class="press-item"><span class="press-date">Mar 2026</span><span class="press-headline">"We've never seen a company this honest about having no product"</span><span class="press-source">TechCrunch (imagined)</span></div>
+    <div class="press-item"><span class="press-date">Mar 2026</span><span class="press-headline">"Joke Technology Systems somehow raises $0 at a $0 valuation, calls it 'refreshing'"</span><span class="press-source">The Information (speculative)</span></div>
+    <div class="press-item"><span class="press-date">Feb 2026</span><span class="press-headline">"I forwarded the Schlokta page to my entire IT department. Two people cried."</span><span class="press-source">Anonymous Reddit user (real)</span></div>
+    <div class="press-item"><span class="press-date">Feb 2026</span><span class="press-headline">"Is this a joke?" "Yes. That's the point."</span><span class="press-source">Overheard at an Okta customer advisory board</span></div>
+  </div>
+</section>
+<section id="subscribe" class="newsletter-section">
+  <div class="reveal">
+    <div class="section-label">Stay Informed</div>
+    <div class="section-title">The JTS Dispatch</div>
+    <div class="section-body">A periodic newsletter featuring enterprise software horror stories and the occasional moment of genuine catharsis. We will never sell your email. Mostly because nobody has offered to buy it.</div>
+    <div class="newsletter-form" id="newsletter-form">
+      <input type="email" id="email-input" placeholder="your@enterprise-email.com" required>
+      <button type="button" onclick="handleSubscribe()">Subscribe</button>
+    </div>
+    <div class="newsletter-note" id="newsletter-note">No spam. No upsells. No 47-step unsubscribe process.</div>
+  </div>
+</section>
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">Joke Technology Systems</div>
+    <div class="footer-legal">© 2026 Joke Technology Systems, Inc. All rights reserved, though we're not sure what we're reserving them for. "Schlokta," "Mockta," "Verkokte," and "Oktholm Syndrome" are trademarks of JTS, Inc., a company that definitely exists in the legal sense. No enterprise software vendors were harmed in the making of this website. Their customers, however, were harmed long before we got here.</div>
+    <ul class="footer-links">
+      <li><a href="#">Privacy Policy (short version: we don't have your data)</a></li>
+      <li><a href="#">Terms of Service (read the whole thing, we dare you)</a></li>
+      <li><a href="#">Careers (we're hiring for roles that don't exist yet)</a></li>
+    </ul>
+  </div>
+</footer>
+<script>
+const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function handleSubscribe() {
+  const input = document.getElementById('email-input'), note = document.getElementById('newsletter-note'), email = input.value;
+  if (!email || !email.includes('@')) { note.textContent = 'Please enter a valid email. We may be a joke, but our form validation is serious.'; note.style.color = '#c0392b'; return; }
+  const domain = email.split('@')[1]?.toLowerCase() || '';
+  let response;
+  if (domain.includes('okta')) response = "Oh. Oh no. You work there? We're... we're so sorry. For everything. You're subscribed. We think you need this.";
+  else if (domain.includes('microsoft') || domain.includes('google')) response = "Welcome. We suspect you'll understand our product line on a deeply personal level. Subscribed.";
+  else if (domain.includes('gmail') || domain.includes('yahoo') || domain.includes('hotmail')) response = "A personal email? You're subscribing to enterprise software comedy on your own time? You absolute legend. Welcome.";
+  else response = "Subscribed. You'll receive our dispatch whenever we feel like writing one. Which is more reliable than most enterprise SLAs.";
+  input.style.display = 'none'; document.querySelector('.newsletter-form button').style.display = 'none';
+  note.textContent = response; note.style.color = 'var(--ink)'; note.style.fontSize = '0.92rem'; note.style.maxWidth = '50ch'; note.style.margin = '0 auto'; note.style.lineHeight = '1.6';
+}
+console.log('%c JTS ', 'background: #c8a44e; color: #0a0a0f; font-size: 14px; font-weight: bold; padding: 4px 8px;');
+console.log('%cJoke Technology Systems — Enterprise Solutions That Are Already a Joke', 'color: #7a7a8a; font-size: 11px;');
+console.log('%cIf you\'re inspecting this console, you\'re already overqualified for most enterprise support teams.', 'color: #c8a44e; font-size: 11px;');
+</script>
+</body>
+</html>
