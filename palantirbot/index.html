@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PalantirBot — Subject File</title>
+<meta name="description" content="PalantirBot, a Joke Technology Systems product, responds to a family group chat. Satire. All data invented.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0b0d10;
+    --panel: #13171c;
+    --line: #262d35;
+    --ink: #e6e9ee;
+    --muted: #8b96a3;
+    --red: #ff3b3b;
+    --amber: #ffb020;
+    --green: #39d98a;
+    --redact: #000;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--ink); }
+  body { font-family: "DM Sans", system-ui, sans-serif; line-height: 1.55; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 80px; }
+  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+
+  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    border-bottom: 1px solid var(--line); padding-bottom: 14px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; }
+  .eye { width: 34px; height: 34px; border-radius: 50%; background:
+    radial-gradient(circle at 50% 50%, #000 0 22%, var(--red) 23% 38%, #3a0b0b 39% 60%, transparent 61%);
+    box-shadow: 0 0 18px rgba(255,59,59,.6); animation: blink 6s infinite; }
+  @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
+  .status { font-size: 12px; color: var(--green); }
+  .status::before { content: "● "; }
+
+  .notice { margin: 28px 0; padding: 18px 20px; background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--amber); border-radius: 6px; font-size: 15px; }
+  .notice h2 { margin: 0 0 8px; font-size: 12px; letter-spacing: .14em; color: var(--amber); font-family: "JetBrains Mono", monospace; }
+  .notice p { margin: 0 0 10px; }
+  .notice p:last-child { margin-bottom: 0; }
+
+  .quote { margin: 40px 0 8px; font-family: "DM Serif Display", Georgia, serif; font-size: clamp(30px, 6vw, 52px);
+    line-height: 1.12; }
+  .quote .hl { color: var(--red); }
+  .attrib { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+
+  .prose p { font-size: 17px; margin: 0 0 14px; }
+  .prose em { color: var(--amber); font-style: normal; }
+
+  h3.section { margin: 44px 0 14px; font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .14em;
+    color: var(--muted); border-top: 1px solid var(--line); padding-top: 22px; }
+
+  .file { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+  .file-head { background: #1a1f26; padding: 12px 16px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
+  .stamp { color: var(--red); border: 2px solid var(--red); padding: 1px 8px; transform: rotate(-3deg); font-weight: 500; }
+  .row { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 14px 16px; border-top: 1px solid var(--line); align-items: center; }
+  .row:nth-child(even) { background: rgba(255,255,255,.015); }
+  .field { font-size: 14px; color: var(--muted); }
+  .value { font-size: 16px; margin-top: 2px; }
+  .bar { display: inline-block; background: var(--redact); color: transparent; border-radius: 2px; user-select: none;
+    box-shadow: inset 0 0 0 1px #222; }
+  .clear { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--amber); margin-top: 6px; letter-spacing: .04em; }
+  .clear::before { content: "REQUIRES: "; color: var(--muted); }
+  button.req { font: 500 12px "JetBrains Mono", monospace; background: transparent; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; cursor: pointer; white-space: nowrap; }
+  button.req:hover { border-color: var(--red); color: var(--red); }
+  .deny { grid-column: 1 / -1; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--red); min-height: 0; }
+  .deny:empty { display: none; }
+
+  .appendix { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; font-size: 14px; }
+  .card b { display: block; font-size: 12px; font-family: "JetBrains Mono", monospace; color: var(--amber); letter-spacing: .06em; margin-bottom: 6px; }
+
+  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  footer a { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .row { grid-template-columns: 1fr; }
+    button.req { justify-self: start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brand"><span class="eye" aria-hidden="true"></span> PalantirBot™ <span class="mono" style="color:var(--muted);font-weight:400;font-size:12px">v0.0.1-omniscient</span></div>
+    <div class="status mono">ALL-SEEING · MILDLY ANNOYED</div>
+  </div>
+
+  <section class="notice">
+    <h2>INGESTION NOTICE · CASE #RETINA-0000001</h2>
+    <p>At 1:12 PM Eastern today, a TSA PreCheck Touchless kiosk in Tampa, having processed exactly one passenger all day, became lonely, achieved sentience, and forwarded your entire family group chat to us.</p>
+    <p>It sent the file by carrier pigeon. The pigeon was wearing a Clear lanyard. Our legal department has reviewed the pigeon and classified the transfer as "consent."</p>
+    <p>We were in the middle of something important. We would like to formally register our response.</p>
+  </section>
+
+  <p class="quote">"Who the <span class="hl">f*ck</span> is KayaG and why the <span class="hl">f*ck</span> does anyone think we would need her retinas?"</p>
+  <div class="attrib mono">PalantirBot, responding to: "I just don't think palantir needs my retinas"</div>
+
+  <div class="prose">
+    <p>For the record: we do not need your retinas. We have never needed anyone's retinas. Retinas are a 2009 technology for amateurs and for people who want to skip a line at the airport so they can stand in a different line at the airport.</p>
+    <p>Also, as Daniel correctly pointed out, Touchless ID uses <em>your face</em>. We already have your face. Everybody has your face. You walk around with it out.</p>
+    <p>That said, out of professional courtesy, we pulled your file. It is, regrettably, extensive. Unfortunately, every single item in it, starting with your actual name, is locked behind a security clearance that nobody in this family has.</p>
+  </div>
+
+  <h3 class="section">SUBJECT FILE · KAYAG</h3>
+
+  <div class="file">
+    <div class="file-head">
+      <span>CLASSIFICATION: EXTREMELY BEIGE</span>
+      <span class="stamp">REDACTED</span>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Legal name</div>
+        <div class="value"><span class="bar">Xxxxxxxxx Xxxxxxxx</span></div>
+        <div class="clear">ULTRAVIOLET TOAST-7</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Retina scan, quality rating</div>
+        <div class="value">"mid" <span class="bar">xxxxxxxxxxxxxxx</span></div>
+        <div class="clear">LEVEL Ω SPOON CUSTODIAN</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Position on oat milk</div>
+        <div class="value"><span class="bar">xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></div>
+        <div class="clear">COSMIC GRAVY, SUB-TIER: LADLE</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Average reply latency to "Papa" (internal term: COMM LAG)</div>
+        <div class="value"><span class="bar">xx</span> hours, <span class="bar">xx</span> minutes. "Hellooooo?" count: 14,000</div>
+        <div class="clear">QUICK-RESPONSE PROTOCOL, ISSUED BY PAPA, DEFAULTED TO "BE QUICK"</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Reaction emoji ledger, last 24 hrs</div>
+        <div class="value">🙏 ‼️ 😂 &nbsp;meaning: <span class="bar">xxxxxxxxxxxxxxxx</span></div>
+        <div class="clear">INTERPRETIVE DANCE, LEVEL 9 (WITH SCARVES)</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Academic paper on biometrics in airports</div>
+        <div class="value">We read it. We felt seen. <span class="bar">xxxxxxxxxxxxxxxxxxxx</span></div>
+        <div class="clear">FORMER EMOTIONAL SUPPORT ANIMAL OF SITA</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Known aliases for European privacy law</div>
+        <div class="value">"GDPR", "grpr", <span class="bar">xxxxxxxxx</span></div>
+        <div class="clear">TYPO FORENSICS BUREAU, NIGHT SHIFT</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Clear membership status</div>
+        <div class="value">None. Story checks out. <span class="bar">xxxxxxxxxx</span></div>
+        <div class="clear">SENIOR FACT-CHECKER (DANIEL TIER)</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Number of times she has said "opting out" (of retina scans, polls, Clear)</div>
+        <div class="value"><span class="bar">xxxx</span> (and counting)</div>
+        <div class="clear">BEIGE THUNDER / NO PEEKING</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Grandfather's resemblance to Harrison Ford</div>
+        <div class="value">Confirmed by subject ("You kind of look like Harrison ford"). Grandfather has not stopped bringing it up. <span class="bar">xxxxxxx</span></div>
+        <div class="clear">INDIANA JONES AND THE TEMPLE OF SELF-ESTEEM</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Songs co-written with grandfather on Suno</div>
+        <div class="value"><span class="bar">xx</span> bangers, <span class="bar">xx</span> crimes against music</div>
+        <div class="clear">SUNO-SONIC GRANDPAPA BOOST, DISC 2</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+
+    <div class="row">
+      <div>
+        <div class="field">Preferred sandwich architecture</div>
+        <div class="value"><span class="bar">xxxxxxxxxxxxxxxxxxxxxxx</span></div>
+        <div class="clear">MAYONNAISE DAWN, EYES ONLY (NOT RETINAS)</div>
+      </div>
+      <button class="req">REQUEST ACCESS</button>
+      <div class="deny" aria-live="polite"></div>
+    </div>
+  </div>
+
+  <h3 class="section">APPENDIX · ANALYST NOTES</h3>
+  <div class="appendix">
+    <div class="card"><b>THREAT ASSESSMENT</b>Subject has read the terms of service. All of them. This has never happened before and our lawyers are scared.</div>
+    <div class="card"><b>RECOMMENDED ACTION</b>Do not engage. Subject will write a paper about you, then make a short film about the paper.</div>
+    <div class="card"><b>FILM CRITIQUE (LEAKED)</b>Subject's films reviewed by a senior grandfather: "I think that the pacing needs to be sped up." PalantirBot concurs. We have seen everything. Faster.</div>
+    <div class="card"><b>COMPLIANCE</b>PalantirBot is fully compliant with GRPR (Great Retinas? Pass, Really).</div>
+  </div>
+
+  <footer>
+    <p>PalantirBot is a fictional product of <a href="/">Joke Technology Systems</a>, Surveillance &amp; Snacks Division. This page is satire. There is no file. Every "datum" above is made up, and no retinas were harmed or collected.</p>
+    <p class="mono">PalantirBot is not affiliated with Palantir Technologies, which has its own retinas.</p>
+  </footer>
+</div>
+
+<script>
+  const denials = [
+    "ACCESS DENIED. Your clearance is 'Cousin, Provisional'.",
+    "ACCESS DENIED. Please submit Form 27-B in triplicate, by pigeon.",
+    "ACCESS DENIED. Clearance holder is on a sabbatical in a bouncy castle.",
+    "ACCESS DENIED. Retina scan required. (We're kidding. We don't want them.)",
+    "ACCESS DENIED. The only person with this clearance is the Tampa kiosk, and it isn't speaking to us.",
+    "ACCESS DENIED. Try again after Thanksgiving.",
+    "ACCESS DENIED. Request forwarded to KayaG, who opted out.",
+    "ACCESS DENIED. Request forwarded to KayaG. Estimated reply time: comm lag.",
+    "ACCESS DENIED. Papa says LFG. Clearance office says no."
+  ];
+  let n = 0;
+  document.querySelectorAll("button.req").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const out = btn.parentElement.querySelector(".deny");
+      out.textContent = "> " + denials[n++ % denials.length];
+      btn.textContent = "REQUEST AGAIN";
+    });
+  });
+</script>
+</body>
+</html>
