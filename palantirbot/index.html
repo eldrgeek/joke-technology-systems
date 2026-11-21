@@ -2,275 +2,302 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PalantirBot — Subject File</title>
-<meta name="description" content="PalantirBot, a Joke Technology Systems product, responds to a family group chat. Satire. All data invented.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PalantirBot</title>
+<meta name="description" content="PalantirBot. Find out what we know. A Joke Technology Systems product. Satire; all data invented.">
+<meta name="theme-color" content="#0b0d10">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0d10;
-    --panel: #13171c;
-    --line: #262d35;
-    --ink: #e6e9ee;
-    --muted: #8b96a3;
-    --red: #ff3b3b;
-    --amber: #ffb020;
-    --green: #39d98a;
-    --redact: #000;
+    --bg: #0b0d10; --panel: #13171c; --panel2: #1a1f26; --line: #262d35;
+    --ink: #e6e9ee; --muted: #8b96a3; --red: #ff3b3b; --amber: #ffb020; --green: #39d98a;
+    --bubble-in: #1f262e; --bubble-bot: #2a0f12;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--bg); color: var(--ink); }
-  body { font-family: "DM Sans", system-ui, sans-serif; line-height: 1.55; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 24px 16px 80px; }
+  body { font-family: "DM Sans", system-ui, sans-serif; line-height: 1.5; -webkit-font-smoothing: antialiased;
+    min-height: 100vh; min-height: 100dvh; overflow-x: hidden; }
   .mono { font-family: "JetBrains Mono", ui-monospace, monospace; }
+  button { font: inherit; }
+  [hidden] { display: none !important; }
 
-  .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    border-bottom: 1px solid var(--line); padding-bottom: 14px; flex-wrap: wrap; }
-  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: .02em; }
-  .eye { width: 34px; height: 34px; border-radius: 50%; background:
-    radial-gradient(circle at 50% 50%, #000 0 22%, var(--red) 23% 38%, #3a0b0b 39% 60%, transparent 61%);
-    box-shadow: 0 0 18px rgba(255,59,59,.6); animation: blink 6s infinite; }
+  /* ---------- eye ---------- */
+  .eye { border-radius: 50%; flex: none;
+    background: radial-gradient(circle at 50% 50%, #000 0 22%, var(--red) 23% 38%, #3a0b0b 39% 60%, transparent 61%);
+    box-shadow: 0 0 24px rgba(255,59,59,.55); animation: blink 6s infinite; }
   @keyframes blink { 0%, 94%, 100% { transform: scaleY(1); } 96% { transform: scaleY(.1); } }
-  .status { font-size: 12px; color: var(--green); }
-  .status::before { content: "● "; }
 
-  .notice { margin: 28px 0; padding: 18px 20px; background: var(--panel); border: 1px solid var(--line);
-    border-left: 4px solid var(--amber); border-radius: 6px; font-size: 15px; }
-  .notice h2 { margin: 0 0 8px; font-size: 12px; letter-spacing: .14em; color: var(--amber); font-family: "JetBrains Mono", monospace; }
-  .notice p { margin: 0 0 10px; }
-  .notice p:last-child { margin-bottom: 0; }
+  /* ---------- landing ---------- */
+  #landing { min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; text-align: center; padding: 24px 16px; gap: 22px; }
+  #landing .eye { width: 120px; height: 120px; box-shadow: 0 0 60px rgba(255,59,59,.55); }
+  #landing h1 { margin: 0; font-family: "DM Serif Display", Georgia, serif; font-weight: 400;
+    font-size: clamp(44px, 13vw, 88px); line-height: 1; letter-spacing: -.01em; }
+  #go { background: var(--red); color: #fff; border: 0; border-radius: 999px; padding: 16px 28px; font-weight: 700;
+    font-size: 18px; cursor: pointer; box-shadow: 0 0 0 0 rgba(255,59,59,.6); animation: pulse 2.2s infinite;
+    min-height: 52px; }
+  #go:active { transform: scale(.97); }
+  @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(255,59,59,.55); } 70% { box-shadow: 0 0 0 18px rgba(255,59,59,0); } 100% { box-shadow: 0 0 0 0 rgba(255,59,59,0); } }
+  .fine { font-size: 12px; color: var(--muted); }
 
-  .quote { margin: 40px 0 8px; font-family: "DM Serif Display", Georgia, serif; font-size: clamp(30px, 6vw, 52px);
-    line-height: 1.12; }
-  .quote .hl { color: var(--red); }
-  .attrib { color: var(--muted); font-size: 14px; margin-bottom: 36px; }
+  /* ---------- app ---------- */
+  #app { max-width: 640px; margin: 0 auto; min-height: 100vh; min-height: 100dvh; display: flex; flex-direction: column; }
+  .bar { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    padding-top: max(12px, env(safe-area-inset-top)); background: rgba(11,13,16,.92); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line); }
+  .bar .eye { width: 30px; height: 30px; }
+  .bar b { font-weight: 700; }
+  .bar .status { margin-left: auto; font-size: 11px; color: var(--green); }
+  .bar .status::before { content: "● "; }
+  #feed { flex: 1; padding: 18px 16px 40px; padding-bottom: max(40px, env(safe-area-inset-bottom)); display: flex; flex-direction: column; gap: 14px; }
 
-  .prose p { font-size: 17px; margin: 0 0 14px; }
-  .prose em { color: var(--amber); font-style: normal; }
+  .step { animation: rise .35s ease-out both; }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
 
-  h3.section { margin: 44px 0 14px; font-family: "JetBrains Mono", monospace; font-size: 13px; letter-spacing: .14em;
-    color: var(--muted); border-top: 1px solid var(--line); padding-top: 22px; }
+  .label { font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: .14em; color: var(--amber); }
 
-  .file { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
-  .file-head { background: #1a1f26; padding: 12px 16px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-    font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); }
-  .stamp { color: var(--red); border: 2px solid var(--red); padding: 1px 8px; transform: rotate(-3deg); font-weight: 500; }
-  .row { display: grid; grid-template-columns: 1fr auto; gap: 8px 16px; padding: 14px 16px; border-top: 1px solid var(--line); align-items: center; }
-  .row:nth-child(even) { background: rgba(255,255,255,.015); }
-  .field { font-size: 14px; color: var(--muted); }
-  .value { font-size: 16px; margin-top: 2px; }
-  .bar { display: inline-block; background: var(--redact); color: transparent; border-radius: 2px; user-select: none;
-    box-shadow: inset 0 0 0 1px #222; }
-  .clear { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--amber); margin-top: 6px; letter-spacing: .04em; }
+  /* upload */
+  .upload { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
+  .progress { height: 6px; background: #0e1115; border-radius: 99px; overflow: hidden; margin: 10px 0 8px; }
+  .progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--red), var(--amber)); border-radius: 99px; transition: width .25s linear; }
+  .log { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--muted); min-height: 4.6em; }
+  .log div::before { content: "> "; color: var(--red); }
+
+  .intel { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--panel2); }
+  .intel .label { display: block; padding: 10px 12px; border-bottom: 1px solid var(--line); color: var(--red); }
+  .intel img { display: block; width: 100%; height: auto; }
+  .intel .meta { padding: 8px 12px; font-size: 11px; color: var(--muted); }
+
+  /* context */
+  .getting { display: flex; align-items: center; gap: 10px; font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--muted); }
+  .spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--line); border-top-color: var(--amber); animation: spin .8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .chat { display: flex; flex-direction: column; gap: 8px; }
+  .msg { max-width: 84%; padding: 8px 12px; border-radius: 14px; background: var(--bubble-in); font-size: 15px; }
+  .msg.me { align-self: flex-end; background: #16302a; border-bottom-right-radius: 4px; }
+  .msg.them { align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg .who { font-size: 12px; font-weight: 700; margin-bottom: 2px; }
+  .blur { filter: blur(5px); user-select: none; pointer-events: none; }
+  .msg.key { filter: none; border: 1px solid var(--red); box-shadow: 0 0 0 3px rgba(255,59,59,.15); }
+  .msg.key .who { color: #a99cff; }
+  .tag { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--red); margin-top: 4px; letter-spacing: .08em; }
+
+  /* bot */
+  .bot { display: flex; gap: 10px; align-items: flex-end; }
+  .bot .eye { width: 34px; height: 34px; }
+  .bot .msg { background: var(--bubble-bot); border: 1px solid #4a1a1f; border-bottom-left-radius: 4px; max-width: 86%; }
+  .bot .who { color: var(--red); }
+  .typing { display: inline-flex; gap: 4px; padding: 4px 0; }
+  .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: dot 1s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; } .typing i:nth-child(3) { animation-delay: .3s; }
+  @keyframes dot { 0%, 60%, 100% { opacity: .3; transform: none; } 30% { opacity: 1; transform: translateY(-3px); } }
+  .punch { font-family: "DM Serif Display", Georgia, serif; font-size: clamp(22px, 6.4vw, 30px); line-height: 1.18; }
+  .punch .hl { color: var(--red); }
+
+  /* actions + file */
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .btn { background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 999px; padding: 10px 16px;
+    font-size: 14px; cursor: pointer; min-height: 44px; }
+  .btn.primary { border-color: var(--red); color: var(--red); }
+  .file { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+  .file-head { background: var(--panel2); padding: 10px 14px; display: flex; justify-content: space-between; gap: 8px; align-items: center;
+    font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--muted); }
+  .stamp { color: var(--red); border: 2px solid var(--red); padding: 0 6px; transform: rotate(-3deg); }
+  .row { padding: 12px 14px; border-top: 1px solid var(--line); }
+  .field { font-size: 13px; color: var(--muted); }
+  .value { font-size: 15px; margin: 2px 0 4px; }
+  .redact { display: inline-block; background: #000; color: transparent; border-radius: 2px; box-shadow: inset 0 0 0 1px #222; user-select: none; }
+  .clear { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--amber); }
   .clear::before { content: "REQUIRES: "; color: var(--muted); }
-  button.req { font: 500 12px "JetBrains Mono", monospace; background: transparent; color: var(--ink);
-    border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; cursor: pointer; white-space: nowrap; }
-  button.req:hover { border-color: var(--red); color: var(--red); }
-  .deny { grid-column: 1 / -1; font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--red); min-height: 0; }
+  .req { margin-top: 8px; font: 500 11px "JetBrains Mono", monospace; background: transparent; color: var(--ink);
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 10px; cursor: pointer; min-height: 36px; }
+  .deny { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--red); margin-top: 6px; }
   .deny:empty { display: none; }
 
-  .appendix { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
-  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; font-size: 14px; }
-  .card b { display: block; font-size: 12px; font-family: "JetBrains Mono", monospace; color: var(--amber); letter-spacing: .06em; margin-bottom: 6px; }
-
-  footer { margin-top: 56px; padding-top: 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+  .tile { animation: tilein .45s ease-out both; }
+  @keyframes tilein { from { opacity: 0; transform: translateX(-10px); background: rgba(255,176,32,.12); } to { opacity: 1; transform: none; background: transparent; } }
+  .gathermeta { padding: 10px 14px; border-top: 1px solid var(--line); font-size: 11px; color: var(--amber); }
+  .credits { text-align: center; padding: 48px 8px 24px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+  .credits .eye { width: 56px; height: 56px; }
+  .credits .prod { font-family: "DM Serif Display", Georgia, serif; font-size: clamp(26px, 7.5vw, 38px); line-height: 1.15; }
+  .credits .studio { font-size: 13px; letter-spacing: .12em; color: var(--muted); text-transform: uppercase; }
+  .credits .btn { margin-top: 10px; }
+  footer { color: var(--muted); font-size: 12px; padding: 8px 0 0; border-top: 1px solid var(--line); margin-top: 10px; }
   footer a { color: var(--ink); }
 
-  @media (max-width: 560px) {
-    .row { grid-template-columns: 1fr; }
-    button.req { justify-self: start; }
-  }
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="topbar">
-    <div class="brand"><span class="eye" aria-hidden="true"></span> PalantirBot™ <span class="mono" style="color:var(--muted);font-weight:400;font-size:12px">v0.0.1-omniscient</span></div>
-    <div class="status mono">ALL-SEEING · MILDLY ANNOYED</div>
+<section id="landing">
+  <div class="eye" aria-hidden="true"></div>
+  <h1>PalantirBot</h1>
+  <button id="go">Find out what we know</button>
+  <div class="fine mono">A Joke Technology Systems product</div>
+</section>
+
+<main id="app" hidden>
+  <div class="bar">
+    <span class="eye" aria-hidden="true"></span>
+    <b>PalantirBot</b>
+    <span class="status mono">ALL-SEEING</span>
   </div>
+  <div id="feed" aria-live="polite"></div>
+</main>
 
-  <section class="notice">
-    <h2>INGESTION NOTICE · CASE #RETINA-0000001</h2>
-    <p>At 1:12 PM Eastern today, a TSA PreCheck Touchless kiosk in Tampa, having processed exactly one passenger all day, became lonely, achieved sentience, and forwarded your entire family group chat to us.</p>
-    <p>It sent the file by carrier pigeon. The pigeon was wearing a Clear lanyard. Our legal department has reviewed the pigeon and classified the transfer as "consent."</p>
-    <p>We were in the middle of something important. We would like to formally register our response.</p>
-  </section>
-
-  <p class="quote">"Who the <span class="hl">f*ck</span> is KayaG and why the <span class="hl">f*ck</span> does anyone think we would need her retinas?"</p>
-  <div class="attrib mono">PalantirBot, responding to: "I just don't think palantir needs my retinas"</div>
-
-  <div class="prose">
-    <p>For the record: we do not need your retinas. We have never needed anyone's retinas. Retinas are a 2009 technology for amateurs and for people who want to skip a line at the airport so they can stand in a different line at the airport.</p>
-    <p>Also, as Daniel correctly pointed out, Touchless ID uses <em>your face</em>. We already have your face. Everybody has your face. You walk around with it out.</p>
-    <p>That said, out of professional courtesy, we pulled your file. It is, regrettably, extensive. Unfortunately, every single item in it, starting with your actual name, is locked behind a security clearance that nobody in this family has.</p>
+<template id="t-upload">
+  <div class="upload step">
+    <div class="label">INCOMING INTELLIGENCE</div>
+    <div class="progress"><i></i></div>
+    <div class="log"></div>
   </div>
+</template>
 
-  <h3 class="section">SUBJECT FILE · KAYAG</h3>
+<template id="t-intel">
+  <figure class="intel step" style="margin:0">
+    <span class="label">MOST RECENT INTELLIGENCE UPLOAD</span>
+    <img src="intel-upload.png" width="1210" height="232" alt="WhatsApp message from Kaya G: I just don't think palantir needs my retinas. 1:13 PM">
+    <figcaption class="meta mono">SOURCE: lonely TSA kiosk, Tampa · VIA: pigeon (Clear lanyard) · CONSENT: per legal, yes</figcaption>
+  </figure>
+</template>
 
-  <div class="file">
-    <div class="file-head">
-      <span>CLASSIFICATION: EXTREMELY BEIGE</span>
-      <span class="stamp">REDACTED</span>
-    </div>
+<template id="t-getting">
+  <div class="getting step"><span class="spin"></span><span>getting context....</span></div>
+</template>
 
-    <div class="row">
-      <div>
-        <div class="field">Legal name</div>
-        <div class="value"><span class="bar">Xxxxxxxxx Xxxxxxxx</span></div>
-        <div class="clear">ULTRAVIOLET TOAST-7</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Retina scan, quality rating</div>
-        <div class="value">"mid" <span class="bar">xxxxxxxxxxxxxxx</span></div>
-        <div class="clear">LEVEL Ω SPOON CUSTODIAN</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Position on oat milk</div>
-        <div class="value"><span class="bar">xxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span></div>
-        <div class="clear">COSMIC GRAVY, SUB-TIER: LADLE</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Average reply latency to "Papa" (internal term: COMM LAG)</div>
-        <div class="value"><span class="bar">xx</span> hours, <span class="bar">xx</span> minutes. "Hellooooo?" count: 14,000</div>
-        <div class="clear">QUICK-RESPONSE PROTOCOL, ISSUED BY PAPA, DEFAULTED TO "BE QUICK"</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Reaction emoji ledger, last 24 hrs</div>
-        <div class="value">🙏 ‼️ 😂 &nbsp;meaning: <span class="bar">xxxxxxxxxxxxxxxx</span></div>
-        <div class="clear">INTERPRETIVE DANCE, LEVEL 9 (WITH SCARVES)</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Academic paper on biometrics in airports</div>
-        <div class="value">We read it. We felt seen. <span class="bar">xxxxxxxxxxxxxxxxxxxx</span></div>
-        <div class="clear">FORMER EMOTIONAL SUPPORT ANIMAL OF SITA</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Known aliases for European privacy law</div>
-        <div class="value">"GDPR", "grpr", <span class="bar">xxxxxxxxx</span></div>
-        <div class="clear">TYPO FORENSICS BUREAU, NIGHT SHIFT</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Clear membership status</div>
-        <div class="value">None. Story checks out. <span class="bar">xxxxxxxxxx</span></div>
-        <div class="clear">SENIOR FACT-CHECKER (DANIEL TIER)</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Number of times she has said "opting out" (of retina scans, polls, Clear)</div>
-        <div class="value"><span class="bar">xxxx</span> (and counting)</div>
-        <div class="clear">BEIGE THUNDER / NO PEEKING</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Grandfather's resemblance to Harrison Ford</div>
-        <div class="value">Confirmed by subject ("You kind of look like Harrison ford"). Grandfather has not stopped bringing it up. <span class="bar">xxxxxxx</span></div>
-        <div class="clear">INDIANA JONES AND THE TEMPLE OF SELF-ESTEEM</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Songs co-written with grandfather on Suno</div>
-        <div class="value"><span class="bar">xx</span> bangers, <span class="bar">xx</span> crimes against music</div>
-        <div class="clear">SUNO-SONIC GRANDPAPA BOOST, DISC 2</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
-
-    <div class="row">
-      <div>
-        <div class="field">Preferred sandwich architecture</div>
-        <div class="value"><span class="bar">xxxxxxxxxxxxxxxxxxxxxxx</span></div>
-        <div class="clear">MAYONNAISE DAWN, EYES ONLY (NOT RETINAS)</div>
-      </div>
-      <button class="req">REQUEST ACCESS</button>
-      <div class="deny" aria-live="polite"></div>
-    </div>
+<template id="t-chat">
+  <div class="chat step">
+    <div class="msg them blur"><div class="who">Xxxxxx</div>Xxx xxxxxxx xxxx xx xxx xxxxx xxxxxxxx</div>
+    <div class="msg them blur"><div class="who">Xxxxx</div>Xxxxx xx xxxxxx xxxxxx</div>
+    <div class="msg me blur">Xx xxx xx Xxxxxx. Xxxxxx xxxxx.</div>
+    <div class="msg them blur"><div class="who">Xxxxxx</div>Xxxx'x xxxxx xxxx xxxx xxxxxxx?</div>
+    <div class="msg them key"><div class="who">Kaya G</div>I just don't think palantir needs my retinas<div class="tag">▲ FLAGGED BY PALANTIRBOT</div></div>
+    <div class="msg them blur"><div class="who">Xxxxxx</div>X xxx'x xxxxx xxxxxxxxx xxxx Xxxxxx xxxxx.</div>
+    <div class="msg them blur"><div class="who">Xxxx X</div>X'xx xxxxxxx x xxxxx xx xxxxxxxxx</div>
+    <div class="msg them blur"><div class="who">Xxxxxx</div>Xxxxx xxxxxx xxx.</div>
   </div>
+</template>
 
-  <h3 class="section">APPENDIX · ANALYST NOTES</h3>
-  <div class="appendix">
-    <div class="card"><b>THREAT ASSESSMENT</b>Subject has read the terms of service. All of them. This has never happened before and our lawyers are scared.</div>
-    <div class="card"><b>RECOMMENDED ACTION</b>Do not engage. Subject will write a paper about you, then make a short film about the paper.</div>
-    <div class="card"><b>FILM CRITIQUE (LEAKED)</b>Subject's films reviewed by a senior grandfather: "I think that the pacing needs to be sped up." PalantirBot concurs. We have seen everything. Faster.</div>
-    <div class="card"><b>COMPLIANCE</b>PalantirBot is fully compliant with GRPR (Great Retinas? Pass, Really).</div>
+<template id="t-bot">
+  <div class="bot step">
+    <span class="eye" aria-hidden="true"></span>
+    <div class="msg"><div class="who">PalantirBot</div><div class="body"><span class="typing"><i></i><i></i><i></i></span></div></div>
   </div>
-
-  <footer>
-    <p>PalantirBot is a fictional product of <a href="/">Joke Technology Systems</a>, Surveillance &amp; Snacks Division. This page is satire. There is no file. Every "datum" above is made up, and no retinas were harmed or collected.</p>
-    <p class="mono">PalantirBot is not affiliated with Palantir Technologies, which has its own retinas.</p>
-  </footer>
-</div>
+</template>
 
 <script>
-  const denials = [
-    "ACCESS DENIED. Your clearance is 'Cousin, Provisional'.",
-    "ACCESS DENIED. Please submit Form 27-B in triplicate, by pigeon.",
-    "ACCESS DENIED. Clearance holder is on a sabbatical in a bouncy castle.",
-    "ACCESS DENIED. Retina scan required. (We're kidding. We don't want them.)",
-    "ACCESS DENIED. The only person with this clearance is the Tampa kiosk, and it isn't speaking to us.",
-    "ACCESS DENIED. Try again after Thanksgiving.",
-    "ACCESS DENIED. Request forwarded to KayaG, who opted out.",
-    "ACCESS DENIED. Request forwarded to KayaG. Estimated reply time: comm lag.",
-    "ACCESS DENIED. Papa says LFG. Clearance office says no."
-  ];
-  let n = 0;
-  document.querySelectorAll("button.req").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const out = btn.parentElement.querySelector(".deny");
-      out.textContent = "> " + denials[n++ % denials.length];
-      btn.textContent = "REQUEST AGAIN";
+const feed = document.getElementById('feed');
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+const add = id => { const n = document.getElementById(id).content.firstElementChild.cloneNode(true); feed.appendChild(n); n.scrollIntoView({ behavior: 'smooth', block: 'end' }); return n; };
+const scrollEnd = () => window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+
+async function bot(html, wait = 1200) {
+  const b = add('t-bot');
+  await sleep(wait);
+  b.querySelector('.body').innerHTML = html;
+  scrollEnd();
+  return b;
+}
+
+const FILE = [
+  ['Legal name', '<span class="redact">Xxxxxxxx Xxxxxxxx</span>', 'ULTRAVIOLET TOAST-7'],
+  ['Retina scan, quality rating', '"mid" <span class="redact">xxxxxxxxxx</span>', 'LEVEL Ω SPOON CUSTODIAN'],
+  ['Position on oat milk', '<span class="redact">xxxxxxxxxxxxxxxxxxxx</span>', 'COSMIC GRAVY, SUB-TIER: LADLE'],
+  ['Average reply latency to "Papa" (internal term: COMM LAG)', '<span class="redact">xx</span> hrs. "Hellooooo?" count: 14,000', 'QUICK-RESPONSE PROTOCOL, ISSUED BY PAPA'],
+  ['Academic paper on biometrics in airports', 'We read it. We felt seen. <span class="redact">xxxxxxxx</span>', 'FORMER EMOTIONAL SUPPORT ANIMAL OF SITA'],
+  ['Known aliases for European privacy law', '"GDPR", "grpr", <span class="redact">xxxxx</span>', 'TYPO FORENSICS BUREAU, NIGHT SHIFT'],
+  ['Clear membership status', 'None. Story checks out.', 'SENIOR FACT-CHECKER (DANIEL TIER)'],
+  ["Grandfather's resemblance to Harrison Ford", 'Confirmed by subject. Grandfather will not stop bringing it up.', 'INDIANA JONES AND THE TEMPLE OF SELF-ESTEEM'],
+  ['Songs co-written with grandfather on Suno', '<span class="redact">xx</span> bangers, <span class="redact">xx</span> crimes against music', 'SUNO-SONIC GRANDPAPA BOOST, DISC 2'],
+  ['Preferred sandwich architecture', '<span class="redact">xxxxxxxxxxxxxxx</span>', 'MAYONNAISE DAWN, EYES ONLY (NOT RETINAS)'],
+];
+const DENIALS = [
+  "ACCESS DENIED. Your clearance is 'Cousin, Provisional'.",
+  "ACCESS DENIED. Submit Form 27-B in triplicate, by pigeon.",
+  "ACCESS DENIED. Retina scan required. (Kidding. We don't want them.)",
+  "ACCESS DENIED. The only holder of this clearance is the Tampa kiosk, and it isn't speaking to us.",
+  "ACCESS DENIED. Request forwarded to KayaG. Estimated reply time: comm lag.",
+  "ACCESS DENIED. Papa says LFG. Clearance office says no.",
+  "ACCESS DENIED. Try again after Thanksgiving.",
+];
+let dn = 0;
+
+async function run() {
+  feed.innerHTML = '';
+  // 1. upload
+  const up = add('t-upload');
+  const bar = up.querySelector('.progress i'), log = up.querySelector('.log');
+  const lines = ['intercepting carrier pigeon...', 'removing Clear lanyard...', 'decrypting family group chat...', 'ignoring 14,000 unanswered polls...', 'upload complete.'];
+  for (let i = 0; i < lines.length; i++) {
+    const d = document.createElement('div'); d.textContent = lines[i]; log.appendChild(d);
+    if (log.children.length > 3) log.firstElementChild.remove();
+    bar.style.width = ((i + 1) / lines.length * 100) + '%';
+    await sleep(650);
+  }
+  await sleep(300);
+  add('t-intel');
+  await sleep(2200);
+  // 2. context
+  const g = add('t-getting');
+  await sleep(2000);
+  g.querySelector('span:last-child').textContent = 'context acquired.';
+  g.querySelector('.spin').style.borderTopColor = 'var(--green)';
+  g.querySelector('.spin').style.animation = 'none';
+  add('t-chat');
+  scrollEnd();
+  await sleep(2600);
+  // 3. response
+  await bot('<div class="punch">"Who the <span class="hl">f*ck</span> is KayaG and why the <span class="hl">f*ck</span> does anyone think we would need her retinas?"</div>', 2000);
+  await sleep(2200);
+  // 4. gathering
+  const g2 = add('t-getting');
+  g2.querySelector('span:last-child').textContent = 'Gathering information on KayaG...';
+  const f = document.createElement('div');
+  f.className = 'file step';
+  f.innerHTML = '<div class="file-head"><span>SUBJECT FILE · KAYAG</span><span class="stamp">REDACTED</span></div>';
+  feed.appendChild(f);
+  const counter = document.createElement('div');
+  counter.className = 'gathermeta mono';
+  f.appendChild(counter);
+  for (let i = 0; i < FILE.length; i++) {
+    await sleep(i === 0 ? 1400 : 1100);
+    const [a, b, c] = FILE[i];
+    const r = document.createElement('div');
+    r.className = 'row tile';
+    r.innerHTML = `<div class="field">${a}</div><div class="value">${b}</div><div class="clear">${c}</div><button class="req">REQUEST ACCESS</button><div class="deny"></div>`;
+    r.querySelector('.req').addEventListener('click', e => {
+      e.currentTarget.nextElementSibling.textContent = '> ' + DENIALS[dn++ % DENIALS.length]; e.currentTarget.textContent = 'REQUEST AGAIN';
     });
-  });
+    f.insertBefore(r, counter);
+    counter.textContent = `${i + 1} of ${FILE.length} records · more information being gathered...`;
+    r.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+  counter.textContent = `${FILE.length} records · all redacted · tap any to request access`;
+  g2.querySelector('span:last-child').textContent = 'Information gathered. You may not see it.';
+  g2.querySelector('.spin').style.borderTopColor = 'var(--green)';
+  g2.querySelector('.spin').style.animation = 'none';
+  await sleep(1800);
+  // 5. credits
+  const cr = document.createElement('div');
+  cr.className = 'credits step';
+  cr.innerHTML = '<div class="eye" aria-hidden="true"></div><div class="prod">A Joke Technology Systems Production</div><div class="studio mono">Created at Soma Studios</div><button class="btn" id="replay">Replay</button>';
+  feed.appendChild(cr);
+  const foot = document.createElement('footer');
+  foot.innerHTML = 'PalantirBot is a fictional product of <a href="/">Joke Technology Systems</a>. Satire. There is no file; every "datum" is made up and no retinas were collected. Not affiliated with Palantir Technologies, which has its own retinas.';
+  feed.appendChild(foot);
+  cr.querySelector('#replay').addEventListener('click', () => { window.scrollTo(0, 0); run(); });
+  cr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+document.getElementById('go').addEventListener('click', () => {
+  document.getElementById('landing').hidden = true;
+  document.getElementById('app').hidden = false;
+  run();
+});
 </script>
 </body>
 </html>
